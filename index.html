@@ -95,7 +95,35 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
+    .payment-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .payment-icons img {
+      width: 40px;
+      height: auto;
+    }
   </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      const message = document.getElementById("success-message");
+      if (window.location.hash === "#success") {
+        message.style.display = "block";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="header">
@@ -111,6 +139,12 @@
       <p>La rondache officielle de la Brigade de Recherches de MIONS est disponible à la vente pour les gendarmes, passionnés et collectionneurs.</p>
       <p class="price">7 € la rondache (+ 2 € de frais de port)</p>
       <p>Paiement accepté par chèque, virement, PayPal ou Paylib.</p>
+      <div class="payment-icons">
+        <img src="icons/cheque.png" alt="Chèque">
+        <img src="icons/bank.png" alt="Virement">
+        <img src="icons/paypal.png" alt="PayPal">
+        <img src="icons/paylib.png" alt="Paylib">
+      </div>
       <a href="mailto:maxmulliez@hotmail.fr?subject=Commande rondache BR MIONS" class="cta">Commander par email</a>
       <p style="margin-top: 30px; font-style: italic;">Venir en MP pour les détails si vous avez eu le lien via Facebook.</p>
 
@@ -141,6 +175,10 @@
 
         <button type="submit">Envoyer la commande</button>
       </form>
+
+      <div id="success-message" class="success-message">
+        Merci, votre commande a bien été envoyée. Vous recevrez une confirmation par email sous peu.
+      </div>
 
       <div class="description">
         <h2>Description héraldique</h2>
