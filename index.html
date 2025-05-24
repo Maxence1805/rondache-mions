@@ -112,7 +112,35 @@
       <p class="price">7 € la rondache (+ 2 € de frais de port)</p>
       <p>Paiement accepté par chèque, virement, PayPal ou Paylib.</p>
       <a href="mailto:maxmulliez@hotmail.fr?subject=Commande rondache BR MIONS" class="cta">Commander par email</a>
-      <p style="margin-top: 30px; font-style: italic;">Me contacter pour les détails si vous avez eu le lien via Facebook.</p>
+      <p style="margin-top: 30px; font-style: italic;">Venir en MP pour les détails si vous avez eu le lien via Facebook.</p>
+
+      <form action="https://formspree.io/f/xqkryeal" method="POST">
+        <h2>Commander en ligne</h2>
+        <label for="name">Nom complet</label>
+        <input type="text" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+
+        <label for="address">Adresse postale</label>
+        <textarea name="address" rows="3" required></textarea>
+
+        <label for="quantity">Quantité souhaitée</label>
+        <input type="number" name="quantity" min="1" required>
+
+        <label for="payment">Mode de paiement</label>
+        <select name="payment" required>
+          <option value="Chèque">Chèque</option>
+          <option value="Virement">Virement</option>
+          <option value="PayPal">PayPal</option>
+          <option value="Paylib">Paylib</option>
+        </select>
+
+        <label for="message">Message complémentaire (facultatif)</label>
+        <textarea name="message" rows="3"></textarea>
+
+        <button type="submit">Envoyer la commande</button>
+      </form>
 
       <div class="description">
         <h2>Description héraldique</h2>
@@ -131,20 +159,20 @@
         <h2>Conditions de vente</h2>
         <ul>
           <li>Expédition sous 5 à 10 jours après réception du paiement</li>
-          <li>Vente réservée aux membres de la gendarmerie et collectionneurs</li>
+          <li>Vente à but non lucratif réservée aux membres de la gendarmerie et collectionneurs</li>
           <li>Pas de retour sauf défaut de fabrication</li>
         </ul>
       </div>
 
       <div class="legal">
         <h2>Mentions légales</h2>
-        <p>Cette vente est effectuée à titre personnel, dans le respect du cadre institutionnel de la Gendarmerie Nationale. Aucun usage détourné ou commercial n’est autorisé.</p>
+        <p>Cette vente est effectuée à titre personnel, sans bénéfice, dans le respect du cadre institutionnel de la Gendarmerie Nationale. Aucun usage détourné ou commercial n’est autorisé.</p>
       </div>
 
     </div>
   </div>
   <footer>
-    &copy; 2025 Brigade de Recherches de MIONS
+    &copy; 2025 Brigade de Recherches de MIONS – Rondache à but non lucratif
   </footer>
 </body>
 </html>
