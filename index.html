@@ -17,26 +17,38 @@
       color: white;
       padding: 20px;
       text-align: center;
-      
-      .header {
-  position: relative;
-  background-color: #0f2743;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
+ }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0f2743;
+      color: white;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
 
-.header-logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  height: 150px;
-  width: auto;
-}
+    .header-logo {
+      height: 60px;
+      width: auto;
+    }
 
-.header-text h1 {
-  margin: 5px 0;
-}
+    .header-text {
+      flex: 1;
+      text-align: center;
+      min-width: 250px;
+    }
+
+    .header-text h1 {
+      margin: 5px 0;
+    }
+
+    /* Responsive option: hide side logos on small screens */
+    @media (max-width: 600px) {
+      .header-logo {
+        display: none;
+      }
+    }
 
     }
     .container {
