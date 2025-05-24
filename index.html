@@ -17,6 +17,27 @@
       color: white;
       padding: 20px;
       text-align: center;
+      
+      .header {
+  position: relative;
+  background-color: #0f2743;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.header-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 60px;
+  width: auto;
+}
+
+.header-text h1 {
+  margin: 5px 0;
+}
+
     }
     .container {
       max-width: 900px;
@@ -126,10 +147,13 @@
   </script>
 </head>
 <body>
-  <div class="header">
+<div class="header">
+  <img src="logo.png" alt="Logo BR Mions" class="header-logo">
+  <div class="header-text">
     <h1>RONDACHE OFFICIELLE</h1>
     <h1>Brigade de Recherches de MIONS</h1>
     <h1>(RHÔNE)</h1>
+</div>
   </div>
   <div class="container">
     <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo" onclick="document.getElementById('lightbox').style.display='flex'">
