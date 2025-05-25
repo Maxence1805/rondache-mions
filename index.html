@@ -1,144 +1,194 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rondache BR MIONS</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-.header {
-  position: relative;
-  background-color: #0f2743;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
-.header-logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  height: 150px;
-  width: auto;
-}
-/* Positionne le logo de droite à droite */
-.header-logo.right {
-  left: auto;    /* annule left */
-  right: 40px;   /* positionne à 40px du bord droit */
-  top: 20px;
-}
-.header-text h1 {
-  margin: 5px 0;
-}
-.container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.logo {
-  display: block;
-  margin: 0 auto 20px;
-  max-width: 400px;
-  cursor: pointer;
-}
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-}
-.content {
-  text-align: center;
-}
-.price {
-  font-size: 1.4em;
-  color: #0f2743;
-  margin: 20px 0;
-}
-.cta {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #0f2743;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-.description, .terms, .legal {
-  text-align: left;
-  margin-top: 40px;
-}
-footer {
-  text-align: center;
-  font-size: 0.9em;
-  margin-top: 40px;
-  color: #777;
-}
-form {
-  margin-top: 30px;
-  text-align: left;
-}
-form input, form select, form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-form button {
-  padding: 10px 20px;
-  background-color: #0f2743;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.success-message {
-  display: none;
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  border-radius: 5px;
-}
-.payment-icons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-.payment-icons img {
-  width: 40px;
-  height: auto;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
 
-/* Media query pour cacher les logos sur mobile */
-@media (max-width: 767px) {
-  .header-logo {
-    display: none;
-  }
-}
+    .header {
+      position: relative;
+      background: linear-gradient(90deg, #0f2743, #1a3a60);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
+    .header-logo {
+      position: absolute;
+      top: 20px;
+      height: 150px;
+      width: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .header-logo.right {
+      right: 40px;
+      left: auto;
+    }
+
+    .header-logo:not(.right) {
+      left: 40px;
+    }
+
+    .header-text h1 {
+      margin: 10px 0;
+      font-size: 1.8em;
+      font-weight: 600;
+    }
+
+    .navbar {
+      background-color: #0f2743;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 400px;
+      cursor: pointer;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    .price {
+      font-size: 1.4em;
+      color: #0f2743;
+      margin: 20px 0;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0f2743;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .description, .terms, .legal {
+      text-align: left;
+      margin-top: 40px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 40px;
+      color: #777;
+    }
+
+    form {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: #0f2743;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    form button:hover {
+      background-color: #14365d;
+      transform: scale(1.02);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
+
+    .payment-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .payment-icons img {
+      width: 40px;
+      height: auto;
+    }
+
+    @media (max-width: 767px) {
+      .header-logo {
+        display: none;
+      }
+
+      .header-text h1 {
+        font-size: 1.2em;
+        padding: 0 10px;
+      }
+    }
   </style>
   <script>
     window.addEventListener("DOMContentLoaded", function () {
@@ -146,46 +196,50 @@ form button {
       const message = document.getElementById("success-message");
       if (window.location.hash === "#success") {
         message.style.display = "block";
+        message.scrollIntoView({ behavior: "smooth" });
       }
     });
   </script>
 </head>
 <body>
-<div class="header">
-  <img src="logo.png" alt="Logo BR Mions" class="header-logo">
-  <div class="header-text">
-    <h1>RONDACHE OFFICIELLE</h1>
-    <h1>Brigade de Recherches de MIONS</h1>
-    <h1>(RHÔNE)</h1>
+
+  <div class="header">
+    <img src="logo.png" alt="Logo BR Mions" class="header-logo">
     <img src="logo-droite.png" alt="Logo droite" class="header-logo right">
-</div>
+    <div class="header-text">
+      <h1>RONDACHE OFFICIELLE</h1>
+      <h1>Brigade de Recherches de MIONS</h1>
+      <h1>(RHÔNE)</h1>
+    </div>
   </div>
+
+  <nav class="navbar">
+    <a href="#description">Description</a>
+    <a href="#terms">Conditions</a>
+    <a href="#form">Commande</a>
+  </nav>
+
   <div class="container">
     <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo" onclick="document.getElementById('lightbox').style.display='flex'">
     <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
       <img src="rondache-br-mions.png" alt="Rondache zoom">
     </div>
+
     <div class="content">
       <p>La rondache <strong>brodée</strong> officielle de la Brigade de Recherches de MIONS est disponible à la vente pour les gendarmes, passionnés et collectionneurs.</p>
       <p class="price"><strong>7 € la rondache (+ 2 € de frais de port)</strong></p>
       <p><strong>Pour toute commande, bien vouloir remplir le formulaire de contact, je reviendrai vers vous pour les modalités de paiement avant envoi.</strong></p>
       <p>Paiement accepté par chèque, virement, PayPal ou Paylib.</p>
       <p style="margin-top: 30px; font-style: italic;">Me contacter pour les détails.</p>
-      <div class="description">
+
+      <div id="description" class="description">
         <h2>Description héraldique</h2>
-        <p>
-          La rondache, sur fond bleu et noir, couleurs de la Gendarmerie Nationale, comporte en son centre une araignée noire avec sa toile blanche avec une menotte à une patte évoquant le travail des enquêteurs face aux mis en cause. Elle porte sur sa base le blason de la ville de Mions, siège de l'unité. Elle présente sur sa partie gauche le symbole de l'officier de police judiciaire, qualification intrinsèque de l'unité et symbole d'appartenance à la Gendarmerie.
-          L'ensemble est entouré d'un liseré bicolore or et bleu.
-        </p>
-        <p>
-          Elle présente sur la partie extérieure une couronne noire portant en son chef la mention « BRIGADE DE RECHERCHES » de couleur blanche, faisant ainsi référence à l'appartenance de l'unité au sein de l'institution, et en sa pointe l'inscription en lettres blanches « MIONS », désignant le lieu d'implantation de l'unité.
-        </p>
-        <p>
-          Le tout est bordé par un liseré bicolore bleu et or.
-        </p>
+        <p>La rondache, sur fond bleu et noir, couleurs de la Gendarmerie Nationale, comporte en son centre une araignée noire avec sa toile blanche avec une menotte à une patte évoquant le travail des enquêteurs face aux mis en cause. Elle porte sur sa base le blason de la ville de Mions, siège de l'unité. Elle présente sur sa partie gauche le symbole de l'officier de police judiciaire, qualification intrinsèque de l'unité et symbole d'appartenance à la Gendarmerie.</p>
+        <p>Elle présente sur la partie extérieure une couronne noire portant en son chef la mention « BRIGADE DE RECHERCHES » de couleur blanche, faisant ainsi référence à l'appartenance de l'unité au sein de l'institution, et en sa pointe l'inscription en lettres blanches « MIONS », désignant le lieu d'implantation de l'unité.</p>
+        <p>Le tout est bordé par un liseré bicolore bleu et or.</p>
       </div>
 
-      <div class="terms">
+      <div id="terms" class="terms">
         <h2>Conditions de vente</h2>
         <ul>
           <li>Expédition sous 1 à 3 jours après réception du paiement</li>
@@ -193,8 +247,10 @@ form button {
           <li>Pas de retour sauf défaut de fabrication</li>
         </ul>
       </div>
-  <form action="https://formspree.io/f/mgvkjeor" method="POST">
+
+      <form id="form" action="https://formspree.io/f/mgvkjeor" method="POST">
         <h2>Demandez votre commande</h2>
+
         <label for="name">Nom complet</label>
         <input type="text" name="name" required>
 
@@ -227,16 +283,18 @@ form button {
       <div id="success-message" class="success-message">
         Merci, votre demande a bien été envoyée. Vous recevrez une confirmation par email sous peu.
       </div>
+
       <div class="legal">
         <h2>Mentions légales</h2>
         <p>Cette vente est effectuée à titre personnel, dans le respect du cadre institutionnel de la Gendarmerie Nationale.</p>
         <p>Aucun usage détourné ou commercial n’est autorisé.</p>
       </div>
-
     </div>
   </div>
+
   <footer>
     &copy; 2025 Brigade de Recherches de MIONS
   </footer>
+
 </body>
 </html>
