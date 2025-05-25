@@ -79,7 +79,9 @@
     }
 
     .lightbox {
-      display: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: fixed;
       z-index: 999;
       left: 0;
@@ -87,13 +89,25 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
     }
 
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
+      transform: scale(.9);
+      transition: transform .3s ease;
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
     }
 
     .content {
@@ -104,6 +118,12 @@
       font-size: 1.4em;
       color: #0f2743;
       margin: 20px 0;
+    }
+
+    .stock {
+      font-size: 1.1em;
+      color: #c62828;
+      margin: 10px 0;
     }
 
     .cta {
@@ -167,6 +187,21 @@
       border-radius: 5px;
     }
 
+    .success-message.show {
+      display: block;
+      animation: pop .4s ease-out;
+    }
+
+    .success-message .check {
+      font-size: 1.4em;
+      margin-right: 6px;
+    }
+
+    @keyframes pop {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
     .payment-icons {
       margin-top: 10px;
       display: flex;
@@ -191,11 +226,21 @@
     }
   </style>
   <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      const form = document.querySelector("form");
+    window.addEventListener("DOMContentLoaded", () => {
+      // Lightbox
+      const mainImage  = document.querySelector(".logo");
+      const lightbox   = document.getElementById("lightbox");
+      mainImage.addEventListener("click", () => {
+        lightbox.classList.add("active");
+      });
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      // Message succès
       const message = document.getElementById("success-message");
       if (window.location.hash === "#success") {
-        message.style.display = "block";
+        message.classList.add("show");
         message.scrollIntoView({ behavior: "smooth" });
       }
     });
@@ -220,14 +265,15 @@
   </nav>
 
   <div class="container">
-    <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo" onclick="document.getElementById('lightbox').style.display='flex'">
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo">
+    <div id="lightbox" class="lightbox">
       <img src="rondache-br-mions.png" alt="Rondache zoom">
     </div>
 
     <div class="content">
       <p>La rondache <strong>brodée</strong> officielle de la Brigade de Recherches de MIONS est disponible à la vente pour les gendarmes, passionnés et collectionneurs.</p>
       <p class="price"><strong>7 € la rondache (+ 2 € de frais de port)</strong></p>
+      <p class="stock">Il reste <strong>150</strong> exemplaires disponibles.</p>
       <p><strong>Pour toute commande, bien vouloir remplir le formulaire de contact, je reviendrai vers vous pour les modalités de paiement avant envoi.</strong></p>
       <p>Paiement accepté par chèque, virement, PayPal ou Paylib.</p>
       <p style="margin-top: 30px; font-style: italic;">Me contacter pour les détails.</p>
@@ -277,10 +323,14 @@
         <label for="message">Message complémentaire (facultatif)</label>
         <textarea name="message" rows="3"></textarea>
 
+        <!-- Mail de confirmation automatique -->
+        <input type="hidden" name="_autoresponse" value="Merci pour votre commande. Nous reviendrons vers vous rapidement avec les modalités de paiement.">
+
         <button type="submit">Envoyer la demande</button>
       </form>
 
       <div id="success-message" class="success-message">
+        <span class="check">✔️</span>
         Merci, votre demande a bien été envoyée. Vous recevrez une confirmation par email sous peu.
       </div>
 
