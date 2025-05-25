@@ -225,7 +225,13 @@
       }
     }
   </style>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
   <script>
+    (function(){
+      emailjs.init("X30pM8hRGW-6h8ToH");
+    })();
+
     window.addEventListener("DOMContentLoaded", () => {
       // Lightbox
       const mainImage  = document.querySelector(".logo");
@@ -237,12 +243,33 @@
         lightbox.classList.remove("active");
       });
 
-      // Message succès
-      const message = document.getElementById("success-message");
-      if (window.location.hash === "#success") {
-        message.classList.add("show");
-        message.scrollIntoView({ behavior: "smooth" });
-      }
+      // Form submission via EmailJS
+      document.getElementById("order-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+
+        const templateParams = {
+          name: form.name.value,
+          email: form.email.value,
+          telephone: form.telephone.value,
+          address: form.address.value,
+          quantity: form.quantity.value,
+          payment: form.payment.value,
+          message: form.message.value
+        };
+
+        emailjs.send("service_1d164s5", "template_8tlf7vs", templateParams)
+          .then(() => {
+            const successMessage = document.getElementById("success-message");
+            successMessage.classList.add("show");
+            successMessage.scrollIntoView({ behavior: "smooth" });
+            form.reset();
+          }, (error) => {
+            alert("Une erreur est survenue, veuillez réessayer.");
+            console.error("EmailJS error:", error);
+          });
+      });
     });
   </script>
 </head>
@@ -294,7 +321,7 @@
         </ul>
       </div>
 
-      <form id="form" action="https://formspree.io/f/mgvkjeor" method="POST">
+      <form id="order-form">
         <h2>Demandez votre commande</h2>
 
         <label for="name">Nom complet</label>
@@ -323,20 +350,6 @@
         <label for="message">Message complémentaire (facultatif)</label>
         <textarea name="message" rows="3"></textarea>
 
-        <!-- Mail de confirmation automatique -->
-       <input type="hidden" name="_autoresponse" value="Bonjour,
-
-Merci pour votre demande de commande de la rondache officielle de la Brigade de Recherches de MIONS (Rhône).
-
-Nous reviendrons vers vous rapidement par email pour vous expliquer les modalités de paiement (PayPal, Paylib, virement ou chèque) et organiser l’envoi de votre commande.
-
-À très bientôt et merci pour votre intérêt !
-
-Cordialement,  
-L’équipe de la BR de MIONS">
-        
-<input type="hidden" name="_subject" value="Demande commande Rondache BR MIONS">
-        
         <button type="submit">Envoyer la demande</button>
       </form>
 
