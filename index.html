@@ -225,13 +225,7 @@
       }
     }
   </style>
-
-  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
   <script>
-    (function(){
-      emailjs.init("X30pM8hRGW-6h8ToH");
-    })();
-
     window.addEventListener("DOMContentLoaded", () => {
       // Lightbox
       const mainImage  = document.querySelector(".logo");
@@ -243,33 +237,12 @@
         lightbox.classList.remove("active");
       });
 
-      // Form submission via EmailJS
-      document.getElementById("order-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const form = event.target;
-
-        const templateParams = {
-          name: form.name.value,
-          email: form.email.value,
-          telephone: form.telephone.value,
-          address: form.address.value,
-          quantity: form.quantity.value,
-          payment: form.payment.value,
-          message: form.message.value
-        };
-
-        emailjs.send("service_1d164s5", "template_8tlf7vs", templateParams)
-          .then(() => {
-            const successMessage = document.getElementById("success-message");
-            successMessage.classList.add("show");
-            successMessage.scrollIntoView({ behavior: "smooth" });
-            form.reset();
-          }, (error) => {
-            alert("Une erreur est survenue, veuillez réessayer.");
-            console.error("EmailJS error:", error);
-          });
-      });
+      // Message succès
+      const message = document.getElementById("success-message");
+      if (window.location.hash === "#success") {
+        message.classList.add("show");
+        message.scrollIntoView({ behavior: "smooth" });
+      }
     });
   </script>
 </head>
@@ -300,7 +273,7 @@
     <div class="content">
       <p>La rondache <strong>brodée</strong> officielle de la Brigade de Recherches de MIONS est disponible à la vente pour les gendarmes, passionnés et collectionneurs.</p>
       <p class="price"><strong>7 € la rondache (+ 2 € de frais de port)</strong></p>
-      <p class="stock">Il reste <strong>32</strong> exemplaires disponibles.</p>
+      <p class="stock">Il reste <strong>150</strong> exemplaires disponibles.</p>
       <p><strong>Pour toute commande, bien vouloir remplir le formulaire de contact, je reviendrai vers vous pour les modalités de paiement avant envoi.</strong></p>
       <p>Paiement accepté par chèque, virement, PayPal ou Paylib.</p>
       <p style="margin-top: 30px; font-style: italic;">Me contacter pour les détails.</p>
@@ -321,7 +294,7 @@
         </ul>
       </div>
 
-      <form id="order-form">
+      <form id="form" action="https://formspree.io/f/mgvkjeor" method="POST">
         <h2>Demandez votre commande</h2>
 
         <label for="name">Nom complet</label>
@@ -349,6 +322,9 @@
 
         <label for="message">Message complémentaire (facultatif)</label>
         <textarea name="message" rows="3"></textarea>
+
+        <!-- Mail de confirmation automatique -->
+        <input type="hidden" name="_autoresponse" value="Merci pour votre commande. Nous reviendrons vers vous rapidement avec les modalités de paiement.">
 
         <button type="submit">Envoyer la demande</button>
       </form>
