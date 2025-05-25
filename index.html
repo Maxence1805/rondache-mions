@@ -167,6 +167,8 @@
       margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-size: 1em;
+      font-family: Arial, sans-serif;
     }
 
     form button {
@@ -177,6 +179,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: 0.2s ease;
+      font-size: 1em;
     }
 
     form button:hover {
@@ -232,32 +235,12 @@
       }
     }
   </style>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // Lightbox
-      const mainImage  = document.querySelector(".logo");
-      const lightbox   = document.getElementById("lightbox");
-      mainImage.addEventListener("click", () => {
-        lightbox.classList.add("active");
-      });
-      lightbox.addEventListener("click", () => {
-        lightbox.classList.remove("active");
-      });
-
-      // Message succès
-      const message = document.getElementById("success-message");
-      if (window.location.hash === "#success") {
-        message.classList.add("show");
-        message.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  </script>
 </head>
 <body>
 
   <div class="header">
-    <img src="logo.png" alt="Logo BR Mions" class="header-logo">
-    <img src="logo-droite.png" alt="Logo droite" class="header-logo right">
+    <img src="logo.png" alt="Logo BR Mions" class="header-logo" />
+    <img src="logo-droite.png" alt="Logo droite" class="header-logo right" />
     <div class="header-text">
       <h1>RONDACHE OFFICIELLE</h1>
       <h1>Brigade de Recherches de MIONS</h1>
@@ -268,16 +251,16 @@
   <nav class="navbar">
     <a href="#description">Description</a>
     <a href="#terms">Conditions</a>
-    <a href="#form">Demandez votre Commande</a>
+    <a href="#email-form">Demandez votre Commande</a>
   </nav>
 
   <div class="container">
-    <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo">
-    <div id="lightbox" class="lightbox">
-      <img src="rondache-br-mions.png" alt="Rondache zoom">
+    <img src="rondache-br-mions.png" alt="Rondache BR MIONS" class="logo" />
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Zoom sur la rondache">
+      <img src="rondache-br-mions.png" alt="Rondache zoom" />
     </div>
 
-   <div class="content">
+    <div class="content">
       <p>La rondache <strong>brodée</strong> officielle de la Brigade de Recherches de MIONS est disponible à la vente pour les gendarmes, passionnés et collectionneurs.</p>
       <p class="price"><strong>7 € la rondache (+ 2 € de frais de port)</strong></p>
       <p class="stock">Il reste <strong>62</strong> exemplaires disponibles.</p>
@@ -302,26 +285,27 @@
       </div>
 
       <!-- FORMULAIRE AVEC EmailJS -->
-      <form id="email-form">
+      <form id="email-form" aria-label="Formulaire de commande">
         <h2>Demandez votre commande</h2>
 
         <label for="name">Nom complet</label>
-        <input type="text" name="name" required>
+        <input type="text" id="name" name="name" required />
 
         <label for="email">Email</label>
-        <input type="email" name="email" required>
+        <input type="email" id="email" name="email" required />
 
         <label for="telephone">Téléphone</label>
-        <input type="text" name="telephone" required>
+        <input type="text" id="telephone" name="telephone" required />
 
         <label for="address">Adresse postale (pour l'envoi)</label>
-        <textarea name="address" rows="3" required></textarea>
+        <textarea id="address" name="address" rows="3" required></textarea>
 
         <label for="quantity">Quantité souhaitée</label>
-        <input type="number" name="quantity" min="1" required>
+        <input type="number" id="quantity" name="quantity" min="1" required />
 
         <label for="payment">Mode de paiement souhaité</label>
-        <select name="payment" required>
+        <select id="payment" name="payment" required>
+          <option value="">-- Choisissez un mode de paiement --</option>
           <option value="PayPal">PayPal</option>
           <option value="Paylib">Paylib</option>
           <option value="Virement">Virement</option>
@@ -329,21 +313,22 @@
         </select>
 
         <label for="message">Message complémentaire (facultatif)</label>
-        <textarea name="message" rows="3"></textarea>
+        <textarea id="message" name="message" rows="3"></textarea>
 
-        <button type="submit">Envoyer la demande</button>
+        <button type="submit">Envoyer la commande</button>
+
+        <div id="success-message" class="success-message" role="alert" aria-live="polite">
+          <span class="check">✔</span> Merci, votre commande a bien été prise en compte !
+        </div>
       </form>
 
-      <div id="success-message" class="success-message">
-        <span class="check">✔️</span>
-        Merci, votre demande a bien été envoyée. Vous recevrez une confirmation par email sous peu.
+      <div class="payment-icons" aria-label="Modes de paiement acceptés">
+        <img src="paypal-icon.png" alt="PayPal" />
+        <img src="paylib-icon.png" alt="Paylib" />
+        <img src="virement-icon.png" alt="Virement bancaire" />
+        <img src="cheque-icon.png" alt="Chèque" />
       </div>
 
-          <div class="legal">
-        <h2>Mentions légales</h2>
-        <p>Cette vente est effectuée à titre personnel, dans le respect du cadre institutionnel de la Gendarmerie Nationale.</p>
-        <p>Aucun usage détourné ou commercial n’est autorisé.</p>
-      </div>
     </div>
   </div>
 
@@ -351,38 +336,38 @@
     &copy; 2025 Brigade de Recherches de MIONS
   </footer>
 
-</body>
-</html>
-  <footer>
-    &copy; 2025 Brigade de Recherches de MIONS
-  </footer>
-
   <script>
-    // Lightbox
     window.addEventListener("DOMContentLoaded", () => {
+      // Gestion lightbox
       const mainImage  = document.querySelector(".logo");
       const lightbox   = document.getElementById("lightbox");
-      mainImage.addEventListener("click", () => lightbox.classList.add("active"));
-      lightbox.addEventListener("click", () => lightbox.classList.remove("active"));
-    });
+      mainImage.addEventListener("click", () => {
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+      });
 
-    // Formulaire EmailJS
-    const form = document.getElementById("email-form");
-    const successMsg = document.getElementById("success-message");
+      // Gestion formulaire EmailJS
+      const form = document.getElementById("email-form");
+      const successMsg = document.getElementById("success-message");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-      emailjs.sendForm("service_1d164s5", "template_shudt68", this)
-        .then(function(response) {
-          console.log("SUCCESS!", response.status, response.text);
-          successMsg.classList.add("show");
-          form.reset();
-          successMsg.scrollIntoView({ behavior: "smooth" });
-        }, function(error) {
-          console.error("FAILED...", error);
-          alert("Erreur lors de l'envoi. Merci de réessayer.");
-        });
+        emailjs.sendForm("service_1d164s5", "template_shudt68", this)
+          .then(function(response) {
+            console.log("SUCCESS!", response.status, response.text);
+            successMsg.classList.add("show");
+            form.reset();
+            successMsg.scrollIntoView({ behavior: "smooth" });
+          }, function(error) {
+            console.error("FAILED...", error);
+            alert("Erreur lors de l'envoi. Merci de réessayer.");
+          });
+      });
     });
   </script>
 
